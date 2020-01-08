@@ -13,9 +13,8 @@ use App\Model\RequestModel\CircleRequestModel;
 use App\Model\RequestModel\TriangleRequestModel;
 use App\Model\ResponseModel\CircleResponseModel;
 use App\Model\ResponseModel\TriangleResponseModel;
-use App\Service\ICircleCalculatorService;
+use App\Service\IGeometryCalculator;
 use App\Service\ISerializerService;
-use App\Service\ITriangleCalculatorService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,8 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class MathController
  * @property IMathControllerProcessor mathControllerProcessor
  * @property ISerializerService serializerService
- * @property ITriangleCalculatorService triangleCalculatorService
- * @property ICircleCalculatorService circleCalculatorService
+ * @property IGeometryCalculator geometryCalculator
  * @package App\Controller
  * @Route("math")
  */
@@ -37,16 +35,13 @@ class MathController
      * MathController constructor.
      * @param IMathControllerProcessor $mathControllerProcessor
      * @param ISerializerService $serializerService
-     * @param ICircleCalculatorService $circleCalculatorService
-     * @param ITriangleCalculatorService $triangleCalculatorService
+     * @param IGeometryCalculator $geometryCalculator
      */
-    public function __construct(IMathControllerProcessor $mathControllerProcessor, ISerializerService $serializerService,
-                                ICircleCalculatorService $circleCalculatorService, ITriangleCalculatorService $triangleCalculatorService)
+    public function __construct(IMathControllerProcessor $mathControllerProcessor, ISerializerService $serializerService,IGeometryCalculator $geometryCalculator)
     {
         $this->mathControllerProcessor = $mathControllerProcessor;
         $this->serializerService = $serializerService;
-        $this->circleCalculatorService = $circleCalculatorService;
-        $this->triangleCalculatorService = $triangleCalculatorService;
+        $this->geometryCalculator = $geometryCalculator;
     }
 
     /**
